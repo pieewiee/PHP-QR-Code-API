@@ -17,11 +17,11 @@
 
 ## Installation
 
-Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/pieewiee/PHP-QR-Code-API) and is the recommended method of installation.
+Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/pieewiee/php-qr-code-api) and is the recommended method of installation.
 
 
 ```bash
-docker pull pieewiee/PHP-QR-Code-API:latest
+docker pull pieewiee/php-qr-code-api:latest
 ```
 
 Alternatively you can build the image yourself.
@@ -37,7 +37,7 @@ Start PHP-QR-Code-API Server using:
 ```bash
 docker run --name license -d --restart=always \
   --publish 80:80/tcp \
-  pieewiee/PHP-QR-Code-API:latest
+  pieewiee/php-qr-code-api:latest
 ```
 
 *Alternatively, you can use the sample [docker-compose.yml](docker-compose.yml) file to start the container using [Docker Compose](https://docs.docker.com/compose/)*
