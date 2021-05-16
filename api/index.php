@@ -4,7 +4,8 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Content = file_get_contents('php://input');
-        QRCode::png($Content);
+        print_r($Content);
+        #QRCode::png($Content);
         exit;
     }
 
