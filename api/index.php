@@ -3,10 +3,27 @@
     include('phpqrcode/qrlib.php');
     if(isset($_GET['content'])) {
         $Content = $_GET['content'];
-    } else {
-        $Content = 'Read the documentation';
+        // outputs image directly into browser, as PNG stream
+        QRCode::png($Content);
+    } 
+
+    if(isset($_POST["content"])) {
+        // outputs image directly into browser, as PNG stream
+        QRCode::png($Content);
     }
-    // outputs image directly into browser, as PNG stream
-    QRCode::png($Content);
+    
+    elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        print_r($_POST["content"]);
+    }
+    else {
+        $Content = 'Read the documentation';
+        QRCode::png($Content);
+    }
+
+
 
 ?>
+
+
+$inputJSON = file_get_contents('php://input');
+$input = json_decode($inputJSON, TRUE); //convert JSON into array
