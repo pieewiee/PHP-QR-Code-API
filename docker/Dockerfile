@@ -7,7 +7,7 @@ USER root
 RUN yum update -y
 RUN yum-config-manager --enable remi-php72
 RUN yum update -y
-RUN yum install -y httpd php freetype-devel libjpeg-turbo-devel libpng-devel unzip php-gd.x86_64
+RUN yum install -y httpd php freetype-devel libjpeg-turbo-devel libpng-devel unzip php-gd.x86_64 curl
 
 
 
@@ -29,7 +29,6 @@ RUN mv composer.phar /usr/local/bin/composer
 RUN composer require picqer/php-barcode-generator
 
 EXPOSE 80
-USER 1001
 
 
 CMD /usr/sbin/httpd -D FOREGROUND
