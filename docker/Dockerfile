@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y \
         libpng-dev \
         git\ 
         unzip \
-        php-zip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
 
