@@ -4,8 +4,9 @@ FROM centos:7
 
 USER root
 
-RUN yum update
+RUN yum update -y
 RUN yum-config-manager --enable remi-php72
+RUN yum update -y
 RUN yum install -y httpd php freetype-devel libjpeg-turbo-devel libpng-devel unzip php-gd.x86_64
 
 
