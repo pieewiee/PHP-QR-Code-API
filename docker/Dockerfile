@@ -6,8 +6,12 @@ RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
+        gd \
+        git\ 
+        unzip \
+        php-zip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd
+    && docker-php-ext-install -j$(nproc) 
 
 
 RUN docker-php-ext-enable sodium
@@ -23,7 +27,7 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 RUN composer require picqer/php-barcode-generator
 
-EXPOSE 80
+EXPOSE 8193
 CMD ["apache2-foreground"]
 
 
