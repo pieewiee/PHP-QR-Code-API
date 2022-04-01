@@ -4,8 +4,13 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Content = file_get_contents('php://input');
+<<<<<<< HEAD:docker/api/index.php
     
         QRCode::png($Content);
+=======
+        print_r($Content);
+        #QRCode::png($Content);
+>>>>>>> parent of 8332461 (Update index.php):api/index.php
         exit;
     }
 
