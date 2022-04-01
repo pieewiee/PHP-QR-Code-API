@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/rhel7
+FROM centos:7
 #FROM php:8.0.6-apache-buster
 #ENV PORT 8080
 
