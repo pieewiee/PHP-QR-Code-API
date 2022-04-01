@@ -1,22 +1,25 @@
+FROM registry.access.redhat.com/rhel7
+#FROM php:8.0.6-apache-buster
+#ENV PORT 8080
 
-FROM php:8.0.6-apache-buster
+USER root
 
-User root
-RUN apt-get update && apt-get install -y \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libpng-dev \
-        git\ 
-        unzip \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd
+RUN yum update
+RUN yum-config-manager --enable remi-php72
+RUN yum update
+RUN yum install -y httpd php freetype-devel libjpeg-turbo-devel libpng-devel unzip php-gd.x86_64
 
 
-RUN docker-php-ext-enable sodium
 
-ENTRYPOINT ["docker-php-entrypoint"]
-# https://httpd.apache.org/docs/2.4/stopping.html#gracefulstop
-STOPSIGNAL SIGWINCH
+
+
+RUN echo 'DocumentRoot "/var/www/html"' >> /etc/httpd/conf/httpd.conf
+RUN sed -i "s/Listen.*/Listen 80/" /etc/httpd/conf/httpd.conf
+RUN chmod 777 /run/httpd
+RUN sed -i 's/ErrorLog.*/ErrorLog "|\/usr\/bin\/cat"/' /etc/httpd/conf/httpd.conf
+RUN sed -i 's/CustomLog.*/CustomLog "|\/usr\/bin\/cat" combined/' /etc/httpd/conf/httpd.conf
+
+
 
 COPY api /var/www/html
 WORKDIR /var/www/html
@@ -26,10 +29,7 @@ RUN mv composer.phar /usr/local/bin/composer
 RUN composer require picqer/php-barcode-generator
 
 EXPOSE 80
-CMD ["apache2-foreground"]
+USER 1001
 
 
-
-
-
-
+CMD /usr/sbin/httpd -D FOREGROUND
