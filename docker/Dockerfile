@@ -29,7 +29,6 @@ RUN mv -f composer.phar /usr/local/bin/composer
 RUN composer require picqer/php-barcode-generator
 
 EXPOSE 80
-USER 1001
 
 
 CMD /usr/sbin/httpd -D FOREGROUND
