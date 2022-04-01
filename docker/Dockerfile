@@ -25,7 +25,7 @@ COPY api /var/www/html
 WORKDIR /var/www/html
 
 RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer -y
+RUN mv -y composer.phar /usr/local/bin/composer 
 RUN composer require picqer/php-barcode-generator
 
 EXPOSE 80
