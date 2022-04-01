@@ -1,3 +1,4 @@
+
 FROM php:8.0.6-apache-buster
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
@@ -16,5 +17,15 @@ STOPSIGNAL SIGWINCH
 COPY api /var/www/html
 WORKDIR /var/www/html
 
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer
+RUN composer require picqer/php-barcode-generator
+
 EXPOSE 80
 CMD ["apache2-foreground"]
+
+
+
+
+
+
