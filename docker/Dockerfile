@@ -6,7 +6,6 @@ USER root
 
 RUN yum update
 RUN yum-config-manager --enable remi-php72
-RUN yum update
 RUN yum install -y httpd php freetype-devel libjpeg-turbo-devel libpng-devel unzip php-gd.x86_64
 
 
