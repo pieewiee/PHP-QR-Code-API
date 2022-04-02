@@ -1,0 +1,17 @@
+{
+
+    "values":
+    [
+        {
+            "Name": "PDF417",
+            "value": "PDF417",
+            "codeType": "PDF417",
+            "size": "750",
+            "Margin": "1",
+            "level": "L",
+            "color": "#000000"
+        }
+
+    ]
+    
+}

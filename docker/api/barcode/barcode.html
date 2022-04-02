@@ -1,0 +1,279 @@
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Barcode Generator</h2>
+    </div>
+    <div class="col-md-8">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" id="BarcodeURLInput" class="form-control" placeholder="Barcode URL" aria-label="Barcode URL">
+                    <button id="BarcodeURLClipboardButton" class="btn btn-outline-secondary" type="button"><i class="fas fa-clipboard" aria-hidden="true"></i></button>
+                    <button id="BarcodeURLNewTabButton" class="btn btn-outline-secondary" type="button"><i class="fas fa-link" aria-hidden="true"></i></button>
+                    <!--<button id="BarcodeURLDownloadButton" class="btn btn-outline-secondary" type="button"><i class="fas fa-download" aria-hidden="true"></i></button>-->
+                  </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<div class="line"></div>
+
+
+<div class="row"></div>
+
+
+
+<form>
+    <div class="form-group">
+        <label for="BarcodeSelect">Barcode Type</label>
+        <select id="BarcodeSelect" multiple></select>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="BarcodeContentTextArea">Barcode Content</label>
+        <textarea class="form-control" id="BarcodeContentTextArea" rows="4">12345</textarea>
+    </div>
+    <p></p>
+    
+    <div class="form-group">
+
+        <div class="row">
+            <div class="col-md-3">
+                <label class="form-label" for="BarcodeScaleInput">Barcode Scale</label>
+                <input type="number" id="BarcodeScaleInput" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label" for="BarcodeHeightInput">Barcode Height</label>
+                <input type="number" id="BarcodeHeightInput" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="BarcodeColorInput" class="form-label">Barcode Color</label>
+                        <input type="color" class="form-control form-control-color" id="BarcodeColorInput" value="#000000" title="Choose your color">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="BarcodeRotateCheckbox">
+                            <label class="form-check-label" for="BarcodeRotateCheckbox">
+                                Barcode Rotate
+                            </label>
+                          </div>
+                    </div>
+            
+            
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <label for="GenerateBarcodeButton" class="form-label"></label>
+                <button type="button" id="GenerateBarcodeButton" class="form-control btn btn-success"><i class="fas fa-qrcode"></i> Generate</button>
+            </div>
+            
+        </div>
+    </div>
+    <p></p>    
+</form>
+
+
+
+
+<div class="line"></div>
+
+<div class="row">
+    <div class="col-md-12 d-flex justify-content-center">
+        <img id="BarcodeImage" src="" class="img-fluid" alt="">
+    </div>
+</div>
+
+<div class="line"></div>
+
+
+
+
+<script type="text/javascript">
+
+
+    var Barcodes = [];
+    var Settings = [];
+
+    try {
+        var BarcodeSelect = new SlimSelect({
+        select: '#BarcodeSelect',
+        searchingText: 'Searching...',
+        placeholder: 'Search Barcodes',
+        closeOnSelect: true,
+        limit: 1,
+        deselectLabel: '<span class="red" style="font-size: 1.5em">✖</span>',
+        onChange: (info) => {
+            SetdefaultValue(info)
+        }
+    })
+
+        
+    } catch (error) {
+        
+    }
+    
+
+    $( document ).ready(function() {
+        loadFile('/barcode/settings.json', GetGetBarcodes);
+    });
+
+
+
+    function GetGetBarcodes() {
+        var $json = JSON.parse(this.responseText);
+        
+
+        $json.values.forEach((element) => {
+            Barcodes.push({
+                value: element.value,
+                text: element.Name
+            });
+            
+        });
+
+        Settings = $json.values;
+
+
+        BarcodeSelect.setData(Barcodes);
+
+        var defaultValue = 5;
+
+        $("#BarcodeSelect").prop("selectedIndex", defaultValue);
+
+    
+        $('#BarcodeScaleInput').val($json.values[defaultValue].scale);
+        $('#BarcodeHeightInput').val($json.values[defaultValue].height);
+        $('#BarcodeColorInput').val($json.values[defaultValue].color);
+    
+    }
+
+    function SetdefaultValue(params) {
+
+
+        if( params[0] ) {
+        
+            Settings.forEach(element => {
+                if(element.value == params[0].value){
+                    try {
+                        $('#BarcodeScaleInput').val(element.scale);
+                        $('#BarcodeHeightInput').val(element.height);
+                        $('#BarcodeColorInput').val(element.color);
+                    } catch (error) {
+                        
+                    }
+                }
+            });
+        }
+
+    }
+
+
+ 
+    $("#GenerateBarcodeButton").click(function () {
+
+        var BarcodeType = [];
+        $('#BarcodeSelect  option:selected').each(function () {
+            BarcodeType.push($(this).val());
+        });
+
+        var Content = $('#BarcodeContentTextArea').val();
+        var Scale = $('#BarcodeScaleInput').val();
+        var height = $('#BarcodeHeightInput').val();
+        var color = $('#BarcodeColorInput').val();
+        var rotate = 0;
+
+        if ($('#BarcodeRotateCheckbox').is(':checked')) {
+
+            rotate = 90;
+        }
+
+
+        
+        if (BarcodeType.length > 0 && Content !== "") {
+            if(height !== "" && Scale !== "")
+            {
+                if(color !== "")
+                {
+                    
+                    $("#BarcodeImage").attr("src", "/api/barcode.php?type=" + BarcodeType[0] + "&content=" + Content + "&height=" + height + "&scale=" + Scale + "&rotate=" + rotate + "&color=" + color.replace("#",""));
+                }
+            }
+            //alert($("#BarcodeImage").attr("src"));
+        } else {
+            ToasterEventError('<i class="fas fa-qrcode"></i>', "Not all fields are filled");
+        }
+
+
+    });
+
+    $('#BarcodeImage').on('load', function () {
+        var BarcodeImage = $('#BarcodeImage').attr('src');
+        $("#BarcodeURLInput").val(window.location.origin + BarcodeImage);
+        
+    });
+
+    $("#BarcodeURLClipboardButton").click(function () {
+       
+        var copyText = document.getElementById("BarcodeURLInput");
+
+        var sampleTextarea = document.createElement("textarea");
+        document.body.appendChild(sampleTextarea);
+        sampleTextarea.value = copyText.value; //save main text in it
+        sampleTextarea.select(); //select textarea contenrs
+        document.execCommand("copy");
+        document.body.removeChild(sampleTextarea);
+        ToasterEventSucess('<i class="fas fa-clipboard"></i>', "Copied to Clipboard");
+    });
+
+    $("#BarcodeURLNewTabButton").click(function () {
+        window.open(window.location.origin + $('#BarcodeImage').attr('src'), '_blank'); 
+    });
+    $("#BarcodeURLDownloadButton").click(function () {
+        var BarcodeImage = $('#BarcodeImage').attr('src');
+
+        var BarcodeType = [];
+        $('#BarcodeSelect  option:selected').each(function () {
+            BarcodeType.push($(this).val());
+        });
+
+        var Scale = $('#BarcodeScaleInput').val();
+        var height = $('#BarcodeHeightInput').val();
+
+        loadFile(window.location.origin + BarcodeImage, DownloadFile);
+    });
+
+
+
+    function ToasterEventSucess(MsgBody, MsgTop) {
+        toastr.success(MsgBody, MsgTop, {
+                timeOut: 5000,
+                progressBar: true,
+            }, {
+
+            });
+    }
+    function ToasterEventError(MsgBody, MsgTop) {
+        toastr.error(MsgBody, MsgTop, {
+                timeOut: 5000,
+                progressBar: true,
+            }, {
+
+            });
+    }
+
+
+    function SetResponse() {
+
+        $("#BarcodeImage").attr("src", "data:image/jpeg;base64," + window.btoa(this.responseText.ToString()));
+        ToasterEventSucess('<i class="fas fa-qrcode"></i>', "Barcode Generated");
+
+    }
+</script>

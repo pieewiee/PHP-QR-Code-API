@@ -1,0 +1,17 @@
+{
+
+    "values":
+    [
+        {
+            "Name": "Datamatrix",
+            "value": "Datamatrix",
+            "codeType": "Datamatrix",
+            "size": "250",
+            "Margin": "1",
+            "level": "L",
+            "color": "#000000"
+        }
+
+    ]
+    
+}

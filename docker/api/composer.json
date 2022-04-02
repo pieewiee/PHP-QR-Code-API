@@ -1,0 +1,5 @@
+{
+    "require": {
+        "jucksearm/php-barcode": "^1.0"
+    }
+}

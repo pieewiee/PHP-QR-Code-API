@@ -1,0 +1,17 @@
+{
+
+    "values":
+    [
+        {
+            "Name": "QRcode",
+            "value": "QRcode",
+            "codeType": "QRcode",
+            "size": "250",
+            "Margin": "1",
+            "level": "L",
+            "color": "#000000"
+        }
+
+    ]
+    
+}

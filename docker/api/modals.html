@@ -1,0 +1,427 @@
+<div class="modal fade" id="MigrationModal" tabindex="-1" role="dialog" aria-labelledby="MigrationModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="MigrationModalLabel">Schedule Migration Date</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Computer</th>
+              <th scope="col">Migration Status</th>
+              <th scope="col">Migration Date Committed</th>
+              <th scope="col">Migration Comment</th>
+              <th scope="col">Last Update</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th id="Migration_Object_ID" scope="row"></th>
+              <td id="Migration_Branding_MigrationStatus"></td>
+              <td id="Migration_Branding_MigrationDateCommitted"></td>
+              <td id="Migration_Branding_MigrationComment"></td>
+              <td id="Migration_Branding_LastConfigUpdate"></td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Migration Comment:</label>
+          <textarea class="form-control" id="SelectedMigrationComment" rows="3"
+            placeholder="Additional comments for migration - can't be deleted" required></textarea>
+        </div>
+
+        <div class="line"></div>
+
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="fas fa-clock"></i></span>
+          <input type="text" class="form-control" placeholder="Select Date" aria-label="Username"
+            aria-describedby="basic-addon1" id="SelectedMigrationDate" data-provide="datepicker">
+        </div>
+
+
+
+      </div>
+
+
+      <div class="modal-footer">
+        <span id="MigrationUpdateStatus" class="badge rounded-pill bg-primary">Updating</span>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="SaveMigrationButton" class="btn btn-primary">Set Migration</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="OwnerModal" tabindex="-1" role="dialog" aria-labelledby="OwnerModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="OwnerModalLabel">Set device owner</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Computer</th>
+              <th scope="col">Special Device Expert</th>
+              <th scope="col">Device SME</th>
+              <th scope="col">Device Owner</th>
+              <th scope="col">Last Update</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th id="Owner_Object_ID" scope="row"></th>
+              <td id="Owner_Branding_SpecialDevicesExpert"></td>
+              <td id="Owner_Branding_DeviceSME"></td>
+              <td id="Owner_Branding_DeviceSystemOwner"></td>
+              <td id="Owner_Branding_LastConfigUpdate"></td>
+            </tr>
+          </tbody>
+        </table>
+
+
+        <select class="form-select" aria-label="Default select" id="DeviceOwnerRoleSelect">
+          <option selected disabled>Select Owner Role</option>
+          <option value="Branding_DeviceSME">Device Subject matter Expert</option>
+          <option value="Branding_DeviceSystemOwner">Device System Owner</option>
+          <option value="Branding_SpecialDevicesExpert">Special Device Expert</option>
+        </select>
+        <br></br>
+        <div>
+          <input type='checkbox' data-bs-toggle='collapse' data-bs-target='#ADSearchCollapse'
+            id="OwnerDifferentUserCheckbox">
+          </input>
+          <label class="form-check-label" for="OwnerDifferentUserCheckbox">Select different User</label>
+          <br></br>
+        </div>
+        <div id='ADSearchCollapse' class='collapse div1'>
+        <select id="SelectCRIPUser" multiple>
+        </select>
+          <br></br>
+        </div>
+
+      </div>
+
+
+      <div class="modal-footer">
+        <span id="OwnerUpdateStatus" class="badge rounded-pill bg-primary">Updating</span>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="SaveApproveButton" class="btn btn-success">Approve</button>
+        <button type="button" id="SaveOwnerButton" class="btn btn-primary">Set Role</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="FriendlyNameModal" tabindex="-1" role="dialog" aria-labelledby="FriendlyNameModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="FriendlyNameModalLabel">Set Friendly Name</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Computer</th>
+              <th scope="col">Current Friendly Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th id="FriendlyName_Object_ID" scope="row"></th>
+              <td id="FriendlyName_Branding_FriendlyName"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">New Friendly Name</span>
+          </div>
+          <input id="FriendlyName_NewFriendlyName" type="text" class="form-control" aria-label="New Friendly Name">
+        </div>
+
+        <div class="modal-footer">
+          <span id="FriendlyNameUpdateStatus" class="badge rounded-pill bg-primary">Updating</span>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="SaveFriendlyNameButton" class="btn btn-primary">Set Friendly Name</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="HelpModal" tabindex="-1" role="dialog" aria-labelledby="HelpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="HelpModalLabel">Filter Help</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Computer <input class="form-control input-sm" value="WKS0001234" disabled></th>
+              <th scope="col">Active<input class="form-control input-sm" value="!Yes" disabled></th>
+              <th scope="col">OS <input class="form-control input-sm" value="DISTINCT" disabled></th>
+              <th scope="col">Device SME <input class="form-control input-sm" value="NULL" disabled></th>
+              <th scope="col">Device Owner <input class="form-control input-sm" value="NOT NULL" disabled></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">WKS000123456</th>
+              <td>No</td>
+              <td>WXP</td>
+              <td>-</td>
+              <td>Mayer,Wilfried</td>
+            </tr>
+            <tr>
+              <th scope="row">WKS000123457</th>
+              <td>No</td>
+              <td>W8</td>
+              <td>-</td>
+              <td>Mayer,Wilfried</td>
+            </tr>
+            <tr>
+              <th scope="row">WKS000123458</th>
+              <td>No</td>
+              <td>WM</td>
+              <td>-</td>
+              <td>Mayer,Wolfgang</td>
+            </tr>
+            <tr>
+              <th scope="row">WKS000123459</th>
+              <td>No</td>
+              <td>W10</td>
+              <td>-</td>
+              <td>Tiederauer,Nill</td>
+            </tr>
+            <tr>
+              <th scope="row">WKS000123460</th>
+              <td>No</td>
+              <td>W7</td>
+              <td>-</td>
+              <td>Mayer,Wolfgang</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="ManageAdminModal" tabindex="-1" role="dialog" aria-labelledby="ManageAdminModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ManageAdminModalLabel">Add New User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <select id="SelectDirectory" multiple>
+        </select>
+        <br></br>
+        <select id="SelectUser" multiple>
+        </select>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-window-close"></i>
+            Cancel</button>
+          <button type="button" id="ClearSelectUserButton" class="btn btn-warning"><i class="far fa-trash-alt"></i>
+            Clear</button>
+          <button type="button" id="SaveAddUserButton" class="btn btn-primary"><i class="fas fa-plus-square"></i>
+            Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ManageAdminGroupModal" tabindex="-1" role="dialog" aria-labelledby="ManageAdminGroupModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ManageAdminGroupModalLabel">Add New Group</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <select id="SelectDirectoryGroup" multiple>
+        </select>
+        <br></br>
+        <select id="SelectGroup" multiple>
+        </select>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-window-close"></i>
+            Cancel</button>
+          <button type="button" id="ClearSelectGroupButton" class="btn btn-warning"><i class="far fa-trash-alt"></i>
+            Clear</button>
+          <button type="button" id="SaveAddGroupButton" class="btn btn-primary"><i class="fas fa-plus-square"></i>
+            Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="NetworkAllocationAdminModal" tabindex="-1" role="dialog"
+  aria-labelledby="NetworkAllocationAdminLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="NetworkAllocationAdminLabel">Edit Network allocation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <select id="ComputerSelect" multiple>
+        </select>
+        <br></br>
+        <select id="SNETSelect" multiple>
+        </select>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-window-close"></i>
+            Cancel</button>
+          <button type="button" id="ClearSelectComputerSNETButton" class="btn btn-warning"><i
+              class="far fa-trash-alt"></i> Clear</button>
+          <button type="button" id="SetNetAllocButton" class="btn btn-primary"><i class="fas fa-people-carry"></i>
+            Move</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="AutologinUserModal" tabindex="-1" role="dialog"
+  aria-labelledby="AutologinUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AutologinUserModalLabel">Add Autologin User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Request Number</span>
+          <input id="AutologinUserRequestNumber" type="text" class="form-control" placeholder="Request Number" aria-label="Request_Number" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Autologin Username</span>
+          <input id="AutologinUserUsername" type="text" class="form-control" placeholder="Autologin Username" aria-label="Autologin Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Autologin Password</span>
+          <input id="AutologinUserPassword" type="password" class="form-control" placeholder="Autologin Password" aria-label="Autologin Password" aria-describedby="basic-addon1">
+        </div>
+        <select id="SelectAutologinUserOrderer" multiple>
+        </select>
+
+        <br></br>
+        <div>
+          <input type='checkbox' data-bs-toggle='collapse' data-bs-target='#AutologinUserHostnameCollapse'
+            id="AutologinUserHostnameCheckbox">
+          </input>
+          <label class="form-check-label" for="AutologinUserHostnameCheckbox">Restrict Autologin to Device</label>
+          <br></br>
+        </div>
+        <div id='AutologinUserHostnameCollapse' class='collapse div1'>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Autologin Hostname</span>
+            <input id="AutologinUserHostname" type="text" class="form-control" placeholder="Autologin Hostname" aria-label="Autologin Hostname" aria-describedby="basic-addon1">
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-window-close"></i>
+            Cancel</button>
+          <button type="button" id="ClearSetAutloginUserButton" class="btn btn-warning"><i
+              class="far fa-trash-alt"></i> Clear</button>
+          <button type="button" id="SetAutloginUserButton" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>
+            Create User</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="IntuneConfigModal" tabindex="-1" role="dialog" aria-labelledby="IntuneConfigLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="IntuneConfigLabel">Request Intune SAP Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <ul>
+          <li>Raise a <a style="color: blue;"
+              href="https://boehringer.service-now.com/bi?id=sc_cat_item&sys_id=f9d2473adb72ff40acacff261d9619f1">User
+              Freeform Request</a> in ServiceNow</li>
+          <li>Assignment Group: BI-ITINF-SPECIAL_DEVICE_SERVICE_MANAGER</li>
+          <li>Configuration Item: BI-CS-O365.INTUNE</li>
+          <li>Free Text Field: </br>
+            <ul>
+              <li>Affected Sites: (example: VIE, BIB, FRE)</li>
+              <li>Weblinks: (example:<a style="color: blue;"
+                  href="https://biped02.eu.boehringer.com:9013/sap/zwm_mde_tm">https://biped02.eu.boehringer.com:9013/sap/zwm_mde_tm</a>)
+              </li>
+              <li>Keyboard Layout Region: (example: QWERTY, QWERTZ, AZERTY)</li>
+              <li>Special Parameters: (example: GS1 Aim ID)</li>
+              <li>Owner: Owner mail of the profile</li>
+              <li>Delivery Time: > 30 business days</li>
+            </ul>
+          </li>
+        </ul>
+
+        <br></br>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-window-close"></i>
+            OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

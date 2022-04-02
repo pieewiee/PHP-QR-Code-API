@@ -22,11 +22,11 @@ RUN sed -i 's/CustomLog.*/CustomLog "|\/usr\/bin\/cat" combined/' /etc/httpd/con
 
 
 COPY api /var/www/html
-WORKDIR /var/www/html
+WORKDIR /var/www/html/api
 
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv -f composer.phar /usr/local/bin/composer 
-RUN composer require picqer/php-barcode-generator
+RUN ccomposer require jucksearm/php-barcode
 
 EXPOSE 80
 

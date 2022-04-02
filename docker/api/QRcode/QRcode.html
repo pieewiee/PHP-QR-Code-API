@@ -1,0 +1,282 @@
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>QRcode Generator</h2>
+    </div>
+    <div class="col-md-8">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" id="QRcodeURLInput" class="form-control" placeholder="QRcode URL" aria-label="QRcode URL">
+                    <button id="QRcodeURLClipboardButton" class="btn btn-outline-secondary" type="button"><i class="fas fa-clipboard" aria-hidden="true"></i></button>
+                    <button id="QRcodeURLNewTabButton" class="btn btn-outline-secondary" type="button"><i class="fas fa-link" aria-hidden="true"></i></button>
+                    <!--<button id="QRcodeURLDownloadButton" class="btn btn-outline-secondary" type="button"><i class="fas fa-download" aria-hidden="true"></i></button>-->
+                  </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<div class="line"></div>
+
+
+<div class="row"></div>
+
+
+
+<form>
+    <div class="form-group">
+        <label for="QRcodeSelect">QRcode Type</label>
+        <select id="QRcodeSelect" multiple></select>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="QRcodeContentTextArea">QRcode Content</label>
+        <textarea class="form-control" id="QRcodeContentTextArea" rows="4">12345</textarea>
+    </div>
+    <p></p>
+    
+    <div class="form-group">
+
+        <div class="row">
+            <div class="col-md-3">
+                <label class="form-label" for="QRcodeSizeInput">QRcode Size</label>
+                <input type="number" id="QRcodeSizeInput" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label" for="QRcodeMargin">QRcode Margin</label>
+                <input type="number" id="QRcodeMargin" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="QRcodeColorInput" class="form-label">QRcode Color</label>
+                        <input type="color" class="form-control form-control-color" id="QRcodeColorInput" value="#000000" title="Choose your color">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="QRcodeLevelCheckbox">
+                            <label class="form-check-label" for="QRcodeLevelCheckbox">
+                                QRcode High compr.
+                            </label>
+                          </div>
+                    </div>
+            
+            
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <label for="GenerateQRcodeButton" class="form-label"></label>
+                <button type="button" id="GenerateQRcodeButton" class="form-control btn btn-success"><i class="fas fa-qrcode"></i> Generate</button>
+            </div>
+            
+        </div>
+    </div>
+    <p></p>    
+</form>
+
+
+
+
+<div class="line"></div>
+
+<div class="row">
+    <div class="col-md-12 d-flex justify-content-center">
+        <img id="QRcodeImage" src="" class="img-fluid" alt="">
+    </div>
+</div>
+
+<div class="line"></div>
+
+
+
+
+<script type="text/javascript">
+    
+
+    var QRcodes = [];
+    var Settings = [];
+
+    try {
+        var QRcodeSelect = new SlimSelect({
+        select: '#QRcodeSelect',
+        searchingText: 'Searching...',
+        placeholder: 'Search QRcodes',
+        closeOnSelect: true,
+        limit: 1,
+        deselectLabel: '<span class="red" style="font-size: 1.5em">✖</span>',
+        onChange: (info) => {
+            SetdefaultValue(info)
+        }
+    })
+
+        
+    } catch (error) {
+        
+    }
+    
+
+    $( document ).ready(function() {
+        loadFile('/QRcode/settings.json', GetGetQRcodes);
+    });
+
+
+
+    function GetGetQRcodes() {
+        var $json = JSON.parse(this.responseText);
+        
+
+        $json.values.forEach((element) => {
+            QRcodes.push({
+                value: element.value,
+                text: element.Name
+            });
+            
+        });
+
+        Settings = $json.values;
+
+
+        QRcodeSelect.setData(QRcodes);
+
+        var defaultValue = 0;
+
+        $("#QRcodeSelect").prop("selectedIndex", defaultValue);
+
+    
+        $('#QRcodeSizeInput').val($json.values[defaultValue].size);
+        $('#QRcodeMargin').val($json.values[defaultValue].Margin);
+        $('#QRcodeColorInput').val($json.values[defaultValue].color);
+
+
+
+    
+    }
+
+    function SetdefaultValue(params) {
+
+
+        if( params[0] ) {
+        
+            Settings.forEach(element => {
+                if(element.value == params[0].value){
+                    try {
+                        $('#QRcodeSizeInput').val(element.scale);
+                        $('#QRcodeMargin').val(element.height);
+                        $('#QRcodeColorInput').val(element.color);
+                    } catch (error) {
+                        
+                    }
+                }
+            });
+        }
+
+    }
+
+
+ 
+    $("#GenerateQRcodeButton").click(function () {
+
+        var QRcodeType = [];
+        $('#QRcodeSelect  option:selected').each(function () {
+            QRcodeType.push($(this).val());
+        });
+
+        var Content = $('#QRcodeContentTextArea').val();
+        var size = $('#QRcodeSizeInput').val();
+        var Margin = $('#QRcodeMargin').val();
+        var color = $('#QRcodeColorInput').val();
+        var level = "L";
+
+
+        if ($('#QRcodeLevelCheckbox').is(':checked')) {
+
+            level = "H";
+        }
+
+        
+        if (QRcodeType.length > 0 && Content !== "") {
+            if(Margin !== "" && size !== "")
+            {
+                if(color !== "")
+                {
+                    
+                    $("#QRcodeImage").attr("src", "/api/barcode.php?type=" + QRcodeType[0] + "&content=" + Content + "&margin=" + Margin + "&size=" + size + "&level=" + level + "&color=" + color.replace("#",""));
+                }
+            }
+            //alert($("#QRcodeImage").attr("src"));
+        } else {
+            ToasterEventError('<i class="fas fa-qrcode"></i>', "Not all fields are filled");
+        }
+
+
+    });
+
+    $('#QRcodeImage').on('load', function () {
+        var QRcodeImage = $('#QRcodeImage').attr('src');
+        $("#QRcodeURLInput").val(window.location.origin + QRcodeImage);
+        
+    });
+
+    $("#QRcodeURLClipboardButton").click(function () {
+       
+        var copyText = document.getElementById("QRcodeURLInput");
+
+        var sampleTextarea = document.createElement("textarea");
+        document.body.appendChild(sampleTextarea);
+        sampleTextarea.value = copyText.value; //save main text in it
+        sampleTextarea.select(); //select textarea contenrs
+        document.execCommand("copy");
+        document.body.removeChild(sampleTextarea);
+        ToasterEventSucess('<i class="fas fa-clipboard"></i>', "Copied to Clipboard");
+    });
+
+    $("#QRcodeURLNewTabButton").click(function () {
+        window.open(window.location.origin + $('#QRcodeImage').attr('src'), '_blank'); 
+    });
+    $("#QRcodeURLDownloadButton").click(function () {
+        var QRcodeImage = $('#QRcodeImage').attr('src');
+
+        var QRcodeType = [];
+        $('#QRcodeSelect  option:selected').each(function () {
+            QRcodeType.push($(this).val());
+        });
+
+        var Scale = $('#QRcodeSizeInput').val();
+        var height = $('#QRcodeMargin').val();
+
+        loadFile(window.location.origin + QRcodeImage, DownloadFile);
+    });
+
+
+
+    function ToasterEventSucess(MsgBody, MsgTop) {
+        toastr.success(MsgBody, MsgTop, {
+                timeOut: 5000,
+                progressBar: true,
+            }, {
+
+            });
+    }
+    function ToasterEventError(MsgBody, MsgTop) {
+        toastr.error(MsgBody, MsgTop, {
+                timeOut: 5000,
+                progressBar: true,
+            }, {
+
+            });
+    }
+
+
+    function SetResponse() {
+
+        $("#QRcodeImage").attr("src", "data:image/jpeg;base64," + window.btoa(this.responseText.ToString()));
+        ToasterEventSucess('<i class="fas fa-qrcode"></i>', "QRcode Generated");
+
+    }
+</script>

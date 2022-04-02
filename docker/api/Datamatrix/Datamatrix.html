@@ -1,0 +1,274 @@
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Datamatrix Generator</h2>
+    </div>
+    <div class="col-md-8">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" id="DatamatrixURLInput" class="form-control" placeholder="Datamatrix URL" aria-label="Datamatrix URL">
+                    <button id="DatamatrixURLClipboardButton" class="btn btn-outline-secondary" type="button"><i class="fas fa-clipboard" aria-hidden="true"></i></button>
+                    <button id="DatamatrixURLNewTabButton" class="btn btn-outline-secondary" type="button"><i class="fas fa-link" aria-hidden="true"></i></button>
+                    <!--<button id="DatamatrixURLDownloadButton" class="btn btn-outline-secondary" type="button"><i class="fas fa-download" aria-hidden="true"></i></button>-->
+                  </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<div class="line"></div>
+
+
+<div class="row"></div>
+
+
+
+<form>
+    <div class="form-group">
+        <label for="DatamatrixSelect">Datamatrix Type</label>
+        <select id="DatamatrixSelect" multiple></select>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="DatamatrixContentTextArea">Datamatrix Content</label>
+        <textarea class="form-control" id="DatamatrixContentTextArea" rows="4">12345</textarea>
+    </div>
+    <p></p>
+    
+    <div class="form-group">
+
+        <div class="row">
+            <div class="col-md-3">
+                <label class="form-label" for="DatamatrixSizeInput">Datamatrix Size</label>
+                <input type="number" id="DatamatrixSizeInput" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label" for="DatamatrixMargin">Datamatrix Margin</label>
+                <input type="number" id="DatamatrixMargin" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="DatamatrixColorInput" class="form-label">Datamatrix Color</label>
+                        <input type="color" class="form-control form-control-color" id="DatamatrixColorInput" value="#000000" title="Choose your color">
+                    </div>
+            
+            
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <label for="GenerateDatamatrixButton" class="form-label"></label>
+                <button type="button" id="GenerateDatamatrixButton" class="form-control btn btn-success"><i class="fas fa-qrcode"></i> Generate</button>
+            </div>
+            
+        </div>
+    </div>
+    <p></p>    
+</form>
+
+
+
+
+<div class="line"></div>
+
+<div class="row">
+    <div class="col-md-12 d-flex justify-content-center">
+        <img id="DatamatrixImage" src="" class="img-fluid" alt="">
+    </div>
+</div>
+
+<div class="line"></div>
+
+
+
+
+<script type="text/javascript">
+    
+
+    var Datamatrixs = [];
+    var Settings = [];
+
+    try {
+        var DatamatrixSelect = new SlimSelect({
+        select: '#DatamatrixSelect',
+        searchingText: 'Searching...',
+        placeholder: 'Search Datamatrixs',
+        closeOnSelect: true,
+        limit: 1,
+        deselectLabel: '<span class="red" style="font-size: 1.5em">✖</span>',
+        onChange: (info) => {
+            SetdefaultValue(info)
+        }
+    })
+
+        
+    } catch (error) {
+        
+    }
+    
+
+    $( document ).ready(function() {
+        loadFile('/Datamatrix/settings.json', GetGetDatamatrixs);
+    });
+
+
+
+    function GetGetDatamatrixs() {
+        var $json = JSON.parse(this.responseText);
+        
+
+        $json.values.forEach((element) => {
+            Datamatrixs.push({
+                value: element.value,
+                text: element.Name
+            });
+            
+        });
+
+        Settings = $json.values;
+
+
+        DatamatrixSelect.setData(Datamatrixs);
+
+        var defaultValue = 0;
+
+        $("#DatamatrixSelect").prop("selectedIndex", defaultValue);
+
+    
+        $('#DatamatrixSizeInput').val($json.values[defaultValue].size);
+        $('#DatamatrixMargin').val($json.values[defaultValue].Margin);
+        $('#DatamatrixColorInput').val($json.values[defaultValue].color);
+
+
+
+    
+    }
+
+    function SetdefaultValue(params) {
+
+
+        if( params[0] ) {
+        
+            Settings.forEach(element => {
+                if(element.value == params[0].value){
+                    try {
+                        $('#DatamatrixSizeInput').val(element.scale);
+                        $('#DatamatrixMargin').val(element.height);
+                        $('#DatamatrixColorInput').val(element.color);
+                    } catch (error) {
+                        
+                    }
+                }
+            });
+        }
+
+    }
+
+
+ 
+    $("#GenerateDatamatrixButton").click(function () {
+
+        var DatamatrixType = [];
+        $('#DatamatrixSelect  option:selected').each(function () {
+            DatamatrixType.push($(this).val());
+        });
+
+        var Content = $('#DatamatrixContentTextArea').val();
+        var size = $('#DatamatrixSizeInput').val();
+        var Margin = $('#DatamatrixMargin').val();
+        var color = $('#DatamatrixColorInput').val();
+        var level = "L";
+
+
+        if ($('#DatamatrixLevelCheckbox').is(':checked')) {
+
+            level = "H";
+        }
+
+        
+        if (DatamatrixType.length > 0 && Content !== "") {
+            if(Margin !== "" && size !== "")
+            {
+                if(color !== "")
+                {
+                    
+                    $("#DatamatrixImage").attr("src", "/api/barcode.php?type=" + DatamatrixType[0] + "&content=" + Content + "&margin=" + Margin + "&size=" + size + "&level=" + level + "&color=" + color.replace("#",""));
+                }
+            }
+            //alert($("#DatamatrixImage").attr("src"));
+        } else {
+            ToasterEventError('<i class="fas fa-qrcode"></i>', "Not all fields are filled");
+        }
+
+
+    });
+
+    $('#DatamatrixImage').on('load', function () {
+        var DatamatrixImage = $('#DatamatrixImage').attr('src');
+        $("#DatamatrixURLInput").val(window.location.origin + DatamatrixImage);
+        
+    });
+
+    $("#DatamatrixURLClipboardButton").click(function () {
+       
+        var copyText = document.getElementById("DatamatrixURLInput");
+
+        var sampleTextarea = document.createElement("textarea");
+        document.body.appendChild(sampleTextarea);
+        sampleTextarea.value = copyText.value; //save main text in it
+        sampleTextarea.select(); //select textarea contenrs
+        document.execCommand("copy");
+        document.body.removeChild(sampleTextarea);
+        ToasterEventSucess('<i class="fas fa-clipboard"></i>', "Copied to Clipboard");
+    });
+
+    $("#DatamatrixURLNewTabButton").click(function () {
+        window.open(window.location.origin + $('#DatamatrixImage').attr('src'), '_blank'); 
+    });
+    $("#DatamatrixURLDownloadButton").click(function () {
+        var DatamatrixImage = $('#DatamatrixImage').attr('src');
+
+        var DatamatrixType = [];
+        $('#DatamatrixSelect  option:selected').each(function () {
+            DatamatrixType.push($(this).val());
+        });
+
+        var Scale = $('#DatamatrixSizeInput').val();
+        var height = $('#DatamatrixMargin').val();
+
+        loadFile(window.location.origin + DatamatrixImage, DownloadFile);
+    });
+
+
+
+    function ToasterEventSucess(MsgBody, MsgTop) {
+        toastr.success(MsgBody, MsgTop, {
+                timeOut: 5000,
+                progressBar: true,
+            }, {
+
+            });
+    }
+    function ToasterEventError(MsgBody, MsgTop) {
+        toastr.error(MsgBody, MsgTop, {
+                timeOut: 5000,
+                progressBar: true,
+            }, {
+
+            });
+    }
+
+
+    function SetResponse() {
+
+        $("#DatamatrixImage").attr("src", "data:image/jpeg;base64," + window.btoa(this.responseText.ToString()));
+        ToasterEventSucess('<i class="fas fa-qrcode"></i>', "Datamatrix Generated");
+
+    }
+</script>

@@ -1,0 +1,273 @@
+{
+
+    "values":
+    [
+        {
+            "Name": "QRcode",
+            "value": "QRcode",
+            "codeType": "QRcode",
+            "scale": "500",
+            "height": "50",
+            "color": "#000000"
+        },
+        {
+            "Name": "Datamatrix",
+            "value": "Datamatrix",
+            "codeType": "Datamatrix",
+            "scale": "500",
+            "height": "50",
+            "color": "#000000"
+        },
+        {
+            "Name": "PDF417",
+            "value": "PDF417",
+            "codeType": "PDF417",
+            "scale": "500",
+            "height": "50",
+            "color": "#000000"
+        },
+        {
+            "Name": "C39",
+            "value": "C39",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "C39+",
+            "value": "C39+",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "C39E",
+            "value": "C39E",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "C39E+",
+            "value": "C39E+",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "C93+",
+            "value": "C93+",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "S25",
+            "value": "S25",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "S25+",
+            "value": "S25+",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "I25",
+            "value": "I25",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "I25+",
+            "value": "I25+",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "C128",
+            "value": "C128",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "C128A",
+            "value": "C128A",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "C128B",
+            "value": "C128B",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "C128C",
+            "value": "C128C",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "EAN2",
+            "value": "EAN2",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "EAN5",
+            "value": "EAN5",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "EAN8",
+            "value": "EAN8",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "EAN13",
+            "value": "EAN13",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "UPCA",
+            "value": "UPCA",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "UPCE",
+            "value": "UPCE",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "MSI",
+            "value": "MSI",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "MSI+",
+            "value": "MSI+",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "POSTNET",
+            "value": "POSTNET",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "PLANET",
+            "value": "PLANET",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "RMS4CC",
+            "value": "RMS4CC",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "KIX",
+            "value": "KIX",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "IMB",
+            "value": "IMB",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "CODABAR",
+            "value": "CODABAR",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "CODE11",
+            "value": "CODE11",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "PHARMA",
+            "value": "PHARMA",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        },
+        {
+            "Name": "PHARMA2T",
+            "value": "PHARMA2T",
+            "codeType": "barcode",
+            "scale": "3",
+            "height": "50",
+            "color": "#ff0000"
+        }
+
+
+    ]
+    
+}

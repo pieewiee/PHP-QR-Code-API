@@ -1,0 +1,53 @@
+<div id="sticky-sidebar" class="gradient-border">
+  <div class="sticky-top">
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <img src="" id="ProfilePicture" />
+        <h3 id="Magic-toggle-event">Barcode Generator</h3>
+      </div>
+      <ul class="list-unstyled" id="prodTabs">
+        
+            <!-- --------------------- QRcode Generator --------------------- -->
+            <div id="QRcodeSidebar" class="SidebarSection">
+              <li class="active">
+                <a id="#QRcode" href="#QRcode" data-url="QRcode/QRcode.html" aria-expanded="false"><i
+                    class="fas fa-qrcode"></i> QRcode Generator</a>
+              </li>
+            </div>
+            <!-- --------------------- QRcode Generator --------------------- -->
+            <!-- --------------------- PDF417 Generator --------------------- -->
+            <div id="PDF417Sidebar" class="SidebarSection">
+              <li>
+                <a id="#PDF417" href="#PDF417" data-url="PDF417/PDF417.html" aria-expanded="false"><i
+                    class="fas fa-qrcode"></i> PDF417 Generator</a>
+              </li>
+            </div>
+            <!-- --------------------- PDF417 Generator --------------------- -->
+            <!-- --------------------- Datamatrix Generator --------------------- -->
+            <div id="DatamatrixSidebar" class="SidebarSection">
+              <li>
+                <a id="#Datamatrix" href="#Datamatrix" data-url="Datamatrix/Datamatrix.html" aria-expanded="false"><i
+                    class="fas fa-qrcode"></i> Datamatrix Generator</a>
+              </li>
+            </div>
+            <!-- --------------------- Datamatrix Generator --------------------- -->
+            <!-- --------------------- Barcode Generator --------------------- -->
+              <div id="barcodeSidebar" class="SidebarSection">
+              <li>
+                <a id="#barcode" href="#barcode" data-url="barcode/barcode.html" aria-expanded="false"><i
+                    class="fas fa-barcode"></i> Barcode Generator</a>
+              </li>
+            </div>
+            <!-- --------------------- Barcode Generator --------------------- -->
+        <li id="lisidebarCollapse">
+          <a href="#togglesidebar" id="sidebarCollapse"><i class="fas fa-list"></i> toggle sidebar</a>
+        </li>
+      </ul>
+      <div class="line"></div>
+    </nav>
+  </div>
+</div>
+<div class="Menubutton">
+  <button type="button" id="Menubutton" class="btn btn-secondary float-left"
+    onclick="($('#sidebar').toggleClass('active'))"><i class="fas fa-list"></i></button>
+</div>

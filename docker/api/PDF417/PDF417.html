@@ -1,0 +1,268 @@
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>PDF417 Generator</h2>
+    </div>
+    <div class="col-md-8">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" id="PDF417URLInput" class="form-control" placeholder="PDF417 URL" aria-label="PDF417 URL">
+                    <button id="PDF417URLClipboardButton" class="btn btn-outline-secondary" type="button"><i class="fas fa-clipboard" aria-hidden="true"></i></button>
+                    <button id="PDF417URLNewTabButton" class="btn btn-outline-secondary" type="button"><i class="fas fa-link" aria-hidden="true"></i></button>
+                    <!--<button id="PDF417URLDownloadButton" class="btn btn-outline-secondary" type="button"><i class="fas fa-download" aria-hidden="true"></i></button>-->
+                  </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<div class="line"></div>
+
+
+<div class="row"></div>
+
+
+
+<form>
+    <div class="form-group">
+        <label for="PDF417Select">PDF417 Type</label>
+        <select id="PDF417Select" multiple></select>
+    </div>
+    <p></p>
+    <div class="form-group">
+        <label for="PDF417ContentTextArea">PDF417 Content</label>
+        <textarea class="form-control" id="PDF417ContentTextArea" rows="4">12345</textarea>
+    </div>
+    <p></p>
+    
+    <div class="form-group">
+
+        <div class="row">
+            <div class="col-md-3">
+                <label class="form-label" for="PDF417SizeInput">PDF417 Size</label>
+                <input type="number" id="PDF417SizeInput" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label" for="PDF417Margin">PDF417 Margin</label>
+                <input type="number" id="PDF417Margin" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="PDF417ColorInput" class="form-label">PDF417 Color</label>
+                        <input type="color" class="form-control form-control-color" id="PDF417ColorInput" value="#000000" title="Choose your color">
+                    </div>
+
+            
+            
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <label for="GeneratePDF417Button" class="form-label"></label>
+                <button type="button" id="GeneratePDF417Button" class="form-control btn btn-success"><i class="fas fa-qrcode"></i> Generate</button>
+            </div>
+            
+        </div>
+    </div>
+    <p></p>    
+</form>
+
+
+
+
+<div class="line"></div>
+
+<div class="row">
+    <div class="col-md-12 d-flex justify-content-center">
+        <img id="PDF417Image" src="" class="img-fluid" alt="">
+    </div>
+</div>
+
+<div class="line"></div>
+
+
+
+
+<script type="text/javascript">
+
+    var PDF417s = [];
+    var Settings = [];
+
+    try {
+        var PDF417Select = new SlimSelect({
+        select: '#PDF417Select',
+        searchingText: 'Searching...',
+        placeholder: 'Search PDF417s',
+        closeOnSelect: true,
+        limit: 1,
+        deselectLabel: '<span class="red" style="font-size: 1.5em">✖</span>',
+        onChange: (info) => {
+            SetdefaultValue(info)
+        }
+    })
+
+        
+    } catch (error) {
+        
+    }
+    
+
+    $( document ).ready(function() {
+        loadFile('/PDF417/settings.json', GetGetPDF417s);
+    });
+
+
+
+    function GetGetPDF417s() {
+        var $json = JSON.parse(this.responseText);
+        
+
+        $json.values.forEach((element) => {
+            PDF417s.push({
+                value: element.value,
+                text: element.Name
+            });
+            
+        });
+
+        Settings = $json.values;
+
+
+        PDF417Select.setData(PDF417s);
+
+        var defaultValue = 0;
+
+        $("#PDF417Select").prop("selectedIndex", defaultValue);
+
+    
+        $('#PDF417SizeInput').val($json.values[defaultValue].size);
+        $('#PDF417Margin').val($json.values[defaultValue].Margin);
+        $('#PDF417ColorInput').val($json.values[defaultValue].color);
+
+
+
+    
+    }
+
+    function SetdefaultValue(params) {
+
+
+        if( params[0] ) {
+        
+            Settings.forEach(element => {
+                if(element.value == params[0].value){
+                    try {
+                        $('#PDF417SizeInput').val(element.scale);
+                        $('#PDF417Margin').val(element.height);
+                        $('#PDF417ColorInput').val(element.color);
+                    } catch (error) {
+                        
+                    }
+                }
+            });
+        }
+
+    }
+
+
+ 
+    $("#GeneratePDF417Button").click(function () {
+
+        var PDF417Type = [];
+        $('#PDF417Select  option:selected').each(function () {
+            PDF417Type.push($(this).val());
+        });
+
+        var Content = $('#PDF417ContentTextArea').val();
+        var size = $('#PDF417SizeInput').val();
+        var Margin = $('#PDF417Margin').val();
+        var color = $('#PDF417ColorInput').val();
+
+        
+        
+        if (PDF417Type.length > 0 && Content !== "") {
+            if(Margin !== "" && size !== "")
+            {
+                if(color !== "")
+                {
+                    
+                    $("#PDF417Image").attr("src", "/api/barcode.php?type=" + PDF417Type[0] + "&content=" + Content + "&margin=" + Margin + "&size=" + size +  "&color=" + color.replace("#",""));
+                }
+            }
+            //alert($("#PDF417Image").attr("src"));
+        } else {
+            ToasterEventError('<i class="fas fa-qrcode"></i>', "Not all fields are filled");
+        }
+
+
+    });
+
+    $('#PDF417Image').on('load', function () {
+        var PDF417Image = $('#PDF417Image').attr('src');
+        $("#PDF417URLInput").val(window.location.origin + PDF417Image);
+        
+    });
+
+    $("#PDF417URLClipboardButton").click(function () {
+       
+        var copyText = document.getElementById("PDF417URLInput");
+
+        var sampleTextarea = document.createElement("textarea");
+        document.body.appendChild(sampleTextarea);
+        sampleTextarea.value = copyText.value; //save main text in it
+        sampleTextarea.select(); //select textarea contenrs
+        document.execCommand("copy");
+        document.body.removeChild(sampleTextarea);
+        ToasterEventSucess('<i class="fas fa-clipboard"></i>', "Copied to Clipboard");
+    });
+
+    $("#PDF417URLNewTabButton").click(function () {
+        window.open(window.location.origin + $('#PDF417Image').attr('src'), '_blank'); 
+    });
+    $("#PDF417URLDownloadButton").click(function () {
+        var PDF417Image = $('#PDF417Image').attr('src');
+
+        var PDF417Type = [];
+        $('#PDF417Select  option:selected').each(function () {
+            PDF417Type.push($(this).val());
+        });
+
+        var Scale = $('#PDF417SizeInput').val();
+        var height = $('#PDF417Margin').val();
+
+        loadFile(window.location.origin + PDF417Image, DownloadFile);
+    });
+
+
+
+    function ToasterEventSucess(MsgBody, MsgTop) {
+        toastr.success(MsgBody, MsgTop, {
+                timeOut: 5000,
+                progressBar: true,
+            }, {
+
+            });
+    }
+    function ToasterEventError(MsgBody, MsgTop) {
+        toastr.error(MsgBody, MsgTop, {
+                timeOut: 5000,
+                progressBar: true,
+            }, {
+
+            });
+    }
+
+
+    function SetResponse() {
+
+        $("#PDF417Image").attr("src", "data:image/jpeg;base64," + window.btoa(this.responseText.ToString()));
+        ToasterEventSucess('<i class="fas fa-qrcode"></i>', "PDF417 Generated");
+
+    }
+</script>
