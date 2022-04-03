@@ -59,6 +59,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-check">
+                            
                             <input class="form-check-input" type="checkbox" value="" id="BarcodeRotateCheckbox">
                             <label class="form-check-label" for="BarcodeRotateCheckbox">
                                 Barcode Rotate
@@ -71,8 +72,15 @@
 
             </div>
             <div class="col-md-3">
-                <label for="GenerateBarcodeButton" class="form-label"></label>
-                <button type="button" id="GenerateBarcodeButton" class="form-control btn btn-success"><i class="fas fa-qrcode"></i> Generate</button>
+                <div class="container">
+                    <label for="GenerateBarcodeButton" class="form-label"></label>
+                    <button type="button" id="GenerateBarcodeButton" class="form-control btn btn-success"><i class="fas fa-qrcode"></i> Generate</button>
+                    <input class="form-check-input" type="checkbox" value="" id="BarcodeAutoUpdateCheckbox">
+                    <label class="form-check-label" for="BarcodeAutoUpdateCheckbox">
+                        Auto Update
+                    </label>
+                  </div>
+
             </div>
             
         </div>
@@ -87,7 +95,10 @@
 
 <div class="row">
     <div class="col-md-12 d-flex justify-content-center">
-        <img id="BarcodeImage" src="" class="img-fluid" alt="">
+        
+        <a id="BarcodeImageA" href="" download="Barcode">
+            <img id="BarcodeImage" src="" class="img-fluid" alt="Barcode">
+          </a>
     </div>
 </div>
 
@@ -104,16 +115,16 @@
 
     try {
         var BarcodeSelect = new SlimSelect({
-        select: '#BarcodeSelect',
-        searchingText: 'Searching...',
-        placeholder: 'Search Barcodes',
-        closeOnSelect: true,
-        limit: 1,
-        deselectLabel: '<span class="red" style="font-size: 1.5em">✖</span>',
-        onChange: (info) => {
-            SetdefaultValue(info)
-        }
-    })
+            select: '#BarcodeSelect',
+            searchingText: 'Searching...',
+            placeholder: 'Search Barcodes',
+            closeOnSelect: true,
+            limit: 1,
+            deselectLabel: '<span class="red" style="font-size: 1.5em">✖</span>',
+            onChange: (info) => {
+                SetdefaultValue(info)
+            }
+        })
 
         
     } catch (error) {
@@ -121,8 +132,42 @@
     }
     
 
+
     $( document ).ready(function() {
         loadFile('/barcode/settings.json', GetGetBarcodes);
+
+
+
+        $('#BarcodeRotateCheckbox').change(function() {
+            if ($('#BarcodeAutoUpdateCheckbox').is(':checked')) {
+                $( "#GenerateBarcodeButton" ).trigger( "click");
+            }
+            
+        });
+        $('#BarcodeColorInput').change(function() {
+            if ($('#BarcodeAutoUpdateCheckbox').is(':checked')) {
+                $( "#GenerateBarcodeButton" ).trigger( "click");
+            }
+            
+        });
+        $('#BarcodeHeightInput').change(function() {
+            if ($('#BarcodeAutoUpdateCheckbox').is(':checked')) {
+                $( "#GenerateBarcodeButton" ).trigger( "click");
+            }
+            
+        });
+        $('#BarcodeScaleInput').change(function() {
+            if ($('#BarcodeAutoUpdateCheckbox').is(':checked')) {
+                $( "#GenerateBarcodeButton" ).trigger( "click");
+            }
+            
+        });
+        $('#BarcodeContentTextArea').change(function() {
+            if ($('#BarcodeAutoUpdateCheckbox').is(':checked')) {
+                $( "#GenerateBarcodeButton" ).trigger( "click");
+            }
+            
+        });
     });
 
 
@@ -152,7 +197,7 @@
         $('#BarcodeScaleInput').val($json.values[defaultValue].scale);
         $('#BarcodeHeightInput').val($json.values[defaultValue].height);
         $('#BarcodeColorInput').val($json.values[defaultValue].color);
-    
+        $( "#GenerateBarcodeButton" ).trigger( "click");
     }
 
     function SetdefaultValue(params) {
@@ -203,7 +248,8 @@
                 if(color !== "")
                 {
                     
-                    $("#BarcodeImage").attr("src", "/api/barcode.php?type=" + BarcodeType[0] + "&content=" + Content + "&height=" + height + "&scale=" + Scale + "&rotate=" + rotate + "&color=" + color.replace("#",""));
+                    $("#BarcodeImage").attr("src", "/api/barcode.php?type=" + BarcodeType[0] + "&content=" + encodeURIComponent(Content) + "&height=" + height + "&scale=" + Scale + "&rotate=" + rotate + "&color=" + color.replace("#",""));
+                    $("#BarcodeImageA").attr("href", "/api/barcode.php?type=" + BarcodeType[0] + "&content=" + encodeURIComponent(Content) + "&height=" + height + "&scale=" + Scale + "&rotate=" + rotate + "&color=" + color.replace("#",""));
                 }
             }
             //alert($("#BarcodeImage").attr("src"));

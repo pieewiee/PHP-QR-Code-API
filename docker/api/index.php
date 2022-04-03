@@ -99,6 +99,11 @@ $Sidebar = file_get_contents('Sidebar.html', true);
     <!-- Moment  -->
     <script type="text/javascript" src="js/moment-with-locales.js"></script>
 
+    <!-- JSON Editor  -->
+    <link rel="stylesheet" type="text/css" href="css/jsoneditor.min.css" />
+    <script type="text/javascript" src="js/jsoneditor.min.js"></script>
+
+
 
     
 

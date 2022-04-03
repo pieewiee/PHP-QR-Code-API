@@ -1,0 +1,34 @@
+{
+
+    "values":
+    [
+        {
+
+            "Name": "QRcode",
+            "value": "QRcode",
+            "codeType": "QRcode",
+            "size": "500",
+            "Margin": "0",
+            "level": "L",
+            "color": "#000000"
+
+        }
+
+    ],
+    "TokensTemplates":
+    [
+        {
+            "Name": "Intune - Zebra Wifi",
+            "value": "{\"android.app.extra.PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME\": \"com.google.android.apps.work.clouddpc/.receivers.CloudDeviceAdminReceiver\",  \"android.app.extra.PROVISIONING_DEVICE_ADMIN_SIGNATURE_CHECKSUM\": \"I5YvS0O5hXY46mb01BlRjq4oJJGs2kuUcHvVkAPEXlg\",  \"android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION\": \"https://play.google.com/managed/downloadManagingApp?identifier=setup\",  \"android.app.extra.PROVISIONING_USE_MOBILE_DATA\": true,  \"android.app.extra.PROVISIONING_ADMIN_EXTRAS_BUNDLE\": {    \"com.google.android.apps.work.clouddpc.EXTRA_ENROLLMENT_TOKEN\": \"YOURTOKENHERE\",    \"android.app.extra.PROVISIONING_LEAVE_ALL_SYSTEM_APPS_ENABLED\":true,    \"android.app.extra.PROVISIONING_SKIP_ENCRYPTION\":false,    \"android.app.extra.PROVISIONING_WIFI_SSID\":\"WLANName\",    \"android.app.extra.PROVISIONING_WIFI_PASSWORD\":\"WLANPassword\",    \"android.app.extra.PROVISIONING_WIFI_SECURITY_TYPE\":\"WPA_None\",    \"android.app.extra.PROVISIONING_WIFI_HIDDEN\": false  }}"
+        },
+        {
+            "Name": "Intune - Zebra",
+            "value": "{\"android.app.extra.PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME\":\"com.google.android.apps.work.clouddpc/.receivers.CloudDeviceAdminReceiver\",\"android.app.extra.PROVISIONING_DEVICE_ADMIN_SIGNATURE_CHECKSUM\":\"I5YvS0O5hXY46mb01BlRjq4oJJGs2kuUcHvVkAPEXlg\",\"android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION\":\"https://play.google.com/managed/downloadManagingApp?identifier=setup\",\"android.app.extra.PROVISIONING_USE_MOBILE_DATA\":true,\"android.app.extra.PROVISIONING_ADMIN_EXTRAS_BUNDLE\":{\"com.google.android.apps.work.clouddpc.EXTRA_ENROLLMENT_TOKEN\":\"YOURTOKENHERE\",\"android.app.extra.PROVISIONING_LEAVE_ALL_SYSTEM_APPS_ENABLED\":true,\"android.app.extra.PROVISIONING_SKIP_ENCRYPTION\":false}}"
+        },
+        {
+            "Name": "Soti - Zebra",
+            "value": "{\"android.app.extra.PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME\": \"com.google.android.apps.work.clouddpc/.receivers.CloudDeviceAdminReceiver\",    \"android.app.extra.PROVISIONING_DEVICE_ADMIN_SIGNATURE_CHECKSUM\": \"I5YvS0O5hXY46mb01BlRjq4oJJGs2kuUcHvVkAPEXlg\",    \"android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION\": \"https://play.google.com/managed/downloadManagingApp?identifier=setup\",    \"android.app.extra.PROVISIONING_ADMIN_EXTRAS_BUNDLE\": {        \"com.google.android.apps.work.clouddpc.EXTRA_ENROLLMENT_TOKEN\": \"YourEnrollmentToken\"}}"
+        }
+    ]
+    
+}

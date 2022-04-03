@@ -8,7 +8,7 @@
             "value": "C39",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -16,7 +16,7 @@
             "value": "C39E",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -24,7 +24,7 @@
             "value": "C93+",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -32,7 +32,7 @@
             "value": "S25",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -40,7 +40,7 @@
             "value": "I25",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -48,7 +48,7 @@
             "value": "C128",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "200",
             "color": "#000000"
         },
         {
@@ -56,7 +56,7 @@
             "value": "C128A",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "200",
             "color": "#000000"
         },
         {
@@ -64,7 +64,7 @@
             "value": "C128B",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "200",
             "color": "#000000"
         },
         {
@@ -72,7 +72,7 @@
             "value": "C128C",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "200",
             "color": "#000000"
         },
         {
@@ -80,7 +80,7 @@
             "value": "EAN2",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "200",
             "color": "#000000"
         },
         {
@@ -88,7 +88,7 @@
             "value": "EAN5",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "200",
             "color": "#000000"
         },
         {
@@ -96,7 +96,7 @@
             "value": "EAN8",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "200",
             "color": "#000000"
         },
         {
@@ -104,7 +104,7 @@
             "value": "EAN13",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "200",
             "color": "#000000"
         },
         {
@@ -112,7 +112,7 @@
             "value": "UPCA",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "200",
             "color": "#000000"
         },
         {
@@ -120,7 +120,7 @@
             "value": "UPCE",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -128,7 +128,7 @@
             "value": "MSI",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -136,7 +136,7 @@
             "value": "MSI+",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -144,7 +144,7 @@
             "value": "POSTNET",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -152,7 +152,7 @@
             "value": "PLANET",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -160,7 +160,7 @@
             "value": "RMS4CC",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -168,7 +168,7 @@
             "value": "KIX",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -176,7 +176,7 @@
             "value": "IMB",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -184,7 +184,7 @@
             "value": "CODABAR",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -192,7 +192,7 @@
             "value": "CODE11",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -200,7 +200,7 @@
             "value": "PHARMA",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         },
         {
@@ -208,7 +208,7 @@
             "value": "PHARMA2T",
             "codeType": "barcode",
             "scale": "3",
-            "height": "50",
+            "height": "120",
             "color": "#000000"
         }
 

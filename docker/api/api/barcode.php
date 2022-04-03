@@ -1,6 +1,8 @@
 <?php
+
+
 require 'vendor/autoload.php';
-#header('Content-type:image/png');
+header('Content-type:image/png');
 
 
 use jucksearm\barcode\Barcode;
