@@ -4,11 +4,14 @@ FROM centos:7
 
 USER root
 
+
 RUN yum update -y
 RUN yum-config-manager --enable remi-php72
 RUN yum update -y
 RUN yum install -y httpd php freetype-devel libjpeg-turbo-devel libpng-devel unzip php-gd.x86_64
-
+RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo | tee /etc/yum.repos.d/microsoft.repo
+RUN yum update -y
+RUN yum install -y powershell nano
 
 
 
