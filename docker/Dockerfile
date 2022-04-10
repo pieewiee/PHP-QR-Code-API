@@ -29,7 +29,7 @@ WORKDIR /var/www/html/api
 
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv -f composer.phar /usr/local/bin/composer 
-RUN ccomposer require jucksearm/php-barcode
+#RUN ccomposer require jucksearm/php-barcode
 
 EXPOSE 80
 
